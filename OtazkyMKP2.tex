@@ -126,7 +126,7 @@
 		i \in \langle 1,N \rangle
 	\end{equation}
 
-	\section{}
+	\section{Deformační gradient}
 	\begin{equation}
 		d\bm{x} = \bm{F} \, d\bm{X}
 	\end{equation}
@@ -136,24 +136,55 @@
 	\;,\quad 
 	\bm{Z} = \frac{\partial \bm{u}}{\partial \bm{X}}
 	\end{equation}
+	také lze rozložit jako
+	\begin{equation}
+	\bm{F} = \bm{R}(\bm{X},t)\,\bm{U}(\bm{X},t)
+	\end{equation}
+	kde $\bm{R}$ je tenzor rotace (ortonormální) a $\bm{U}$ tenzor ryzí deformace (symetrický).
+	
+	\subsection{Greenův-Langrangeův tenzor deformace}
+	Pomocí deformačního gradientu lze definovat Greenův-Langrangeův tenzor deformace
+	\begin{equation}
+	\bm{e} = \frac{1}{2}(\bm{F}^T\bm{F} - \bm{1}) = \frac{1}{2}(\bm{U}^T\bm{U} - \bm{1})
+	\end{equation}
 
-	\section{}
+	\section{Newton–Raphsonovo schéma}
 	\emph{``Popište princip Newton–Raphsonova iteračního schématu v přírůstkové metodě. Využijte grafické znázornění pro jeden stupeň volnosti a pro soustavu s mnoha stupni volnosti naznačte vývojový diagram.''}
 	\begin{enumerate}
 		\item $\bm{u} = \bm{u}_0$
-		\item 	$\bm{F}^I = \bm{K}_T(\bm{u})\,\bm{u}$
+		\item $\bm{F}^I = \bm{K}_T(\bm{u})\,\bm{u}$
 		\item $\bm{F}^N = \bm{F}^E - \bm{F}^I$
 		\item $\|\bm{F}^N\| < \varepsilon$ \textbf{?} return \textbf{:} nothing
 		\item $\Delta \bm{u} = \bm{K}_T(\bm{u})^{-1} \bm{F}^N$
 		\item $\bm{u} = \bm{u} + \Delta \bm{u}$
 		\item zpět na 2.
 	\end{enumerate}
-	\begin{figure}
+	\begin{figure}[h!]
 		\centering
 		\includegraphics[width=.5\linewidth]{NR1.png}
 	\end{figure}
-	\begin{figure}
+	\begin{figure}[h!]
 		\centering
 		\includegraphics[width=.5\linewidth]{NR2.png}
 	\end{figure}
+
+	\section{Nelineární model}
+
+	\section{Zpevňování}
+	Trojosá napjatost je obecně popsána bodem v 6D hyper-prostoru. Vzhledem k symetrii tenzoru napětí lze množinu všech možných stavů napětí zakreslit jako oblast v prostoru hlavních napětí.
+
+	Průmět oblasti do deviatorické roviny budeme nazývat plochou plasticity, přičemž na její hranici se budou nacházet průměty napětí elasto-plastické deformace, zatímco uvnitř stavy elastické deformace.
+
+	Při zpevňování bude docházet k plastickému tečení, v jehož průběhu se mění plocha plasticity. Pro ideální plastický materiál se tvar plochy nemění (nejsem si jistý), pouze se zvětšuje (\textbf{isotropní zpevňování}) nebo posouvá (\textbf{kinematické zpevňování}).
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=.5\linewidth]{PlochaPlasticity.png}
+	\end{figure}
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=.5\linewidth]{Zpevnovani.png}
+	\end{figure}
+
+
+
 \end{document}
