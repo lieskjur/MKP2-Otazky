@@ -138,6 +138,8 @@
 	\end{equation}
 
 	\section{Deformační gradient}
+	\emph{``Zapište vztah mezi elementární úsečkou v referenční konfiguraci (popsanou vektorem $d\bm{X}$) a toutéž úsečkou (popsanou vektorem $d\bm{x}$) v konfiguraci aktuální. Popište vlastnosti operátoru, který tento vztah zprostředkuje.''}
+	
 	\begin{equation}
 		d\bm{x} = \bm{F} \, d\bm{X}
 	\end{equation}
@@ -182,6 +184,8 @@
 	\section{Nelineární model}
 
 	\section{Zpevňování}
+	\emph{``Vysvětlete pojmy kinematické a izotropní zpevnění.''}
+
 	Trojosá napjatost je obecně popsána bodem v 6D hyper-prostoru. Vzhledem k symetrii tenzoru napětí lze množinu všech možných stavů napětí zakreslit jako oblast v prostoru hlavních napětí.
 
 	Průmět oblasti do deviatorické roviny budeme nazývat plochou plasticity, přičemž na její hranici se budou nacházet průměty napětí elasto-plastické deformace, zatímco uvnitř stavy elastické deformace.
@@ -196,6 +200,61 @@
 		\includegraphics[width=.5\linewidth]{figs/Zpevnovani.png}
 	\end{figure}
 
+	\section{Tečná matice tuhosti a stabilita systému}
+	\emph{``Jaký je vztah mezi tečnou maticí tuhosti a stabilitou systému?''}
 
+	\section{Status kontaktního páru}
+	\emph{``Vysvětlete pojem status kontaktního páru (za kontaktní pár považujte pro jednoduchost dvojici uzlů potenciálně svázaných kontaktní vazbovou rovnicí) a formulujte podmínky pro změnu statusu.''}
+
+	Kontaktní podmínku páru uzlů lze zapsat jako
+	\begin{equation}
+		(\bm{u}_2 - \bm{u}_1 ) \cdot \bm{n} = \delta
+	\end{equation}
+	Status kontaktního páru lze určit z hodnoty $\delta$
+	\begin{equation}
+		\text{status} = \left\{
+		    \begin{array}{ll}
+		    	\delta < 0 : \text{``spojeno''} \\
+		    	\delta > 0 : \text{``rozpojeno''}
+		    \end{array}
+		    \right.
+	\end{equation}
+	nebo pomocí reakce
+	\begin{equation}
+		\text{status} = \left\{
+		    \begin{array}{ll}
+		    	\bm{R}_{12} \cdot \bm{n} < 0 : \text{``spojeno''} \\
+		    	\bm{R}_{12} \cdot \bm{n} > 0 : \text{``rozpojeno''}
+		    \end{array}
+		    \right.
+	\end{equation}
+	Pokud je okamžitý status ``spojeno'', provádíme kontrolu pomocí reakce a v statusu ``rozpojeno'' přes hodnotu $\delta$.
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=.5\linewidth]{figs/KontaktniPar.png}
+	\end{figure}
+
+	\section{Iterační schéma kontaktní úlohy}
+	\emph{``Naznačte iterační schéma kontaktní úlohy (za kontaktní pár považujte pro jednoduchost dvojici uzlů potenciálně svázaných kontaktní vazbovou rovnicí).''}
+
+	\begin{enumerate}
+		\item vytvoření GAD vazeb (+ definice počátečního statusu)
+		\item MKP výpočet
+		\item výpočet reakcí
+		\item kontrola statusu vazeb
+		\item počet potřebných změn = 0 \textbf{?} konec \textbf{:} rozpojení/spojení vazeb a návrat k 2.
+	\end{enumerate}
+
+	\section{Algoritmus master-slave}
+	\emph{``Vysvětlete základní myšlenky algoritmu \textbf{master–slave}.''}
+
+	Jedná se o algoritmus detekující penetraci těles založený na určení vzdálenosti slave uzlů od stěn povrchu master, kde počátek normály ke stěně master povrchu tvoří spolu s uzlem slave kontaktní pár.
+
+	\begin{itemize}
+	\item [+] řešení po inkrementech
+	\item [+] slave uzel může být v kontaktu s libovolnou stěnou master povrchu
+	\item [--] uzly master povrchu mohou pronikat to slave těles.
+	\item [--] tvrdá nelinearita
+	\end{itemize}
 
 \end{document}
