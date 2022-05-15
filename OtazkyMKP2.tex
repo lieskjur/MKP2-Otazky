@@ -52,9 +52,25 @@
 	\begin{equation}
 		\bm{U}(t_0+\Delta t) \approx \bm{U}(t_0) + \frac{d\bm{U}(t_0)}{dt} \Delta t + \frac{1}{2} \frac{d^2\bm{U}(t_0)}{dt^2} \Delta t^2 + \dots
 	\end{equation}
-	kde první derivaci lze tímpádem aproximovat jako
+	
+	První derivaci lze aproximovat jako
 	\begin{equation}
 		\frac{d\bm{U}(t_0)}{dt} \approx \frac{\bm{U}(t_0+\Delta t) - \bm{U}(t_0)}{\Delta t}
+	\end{equation}
+	
+	Pro druhou derivace nejdříve dosadíme do taylorova rozvoje
+	\begin{equation}
+		\frac{d\bm{U}(t_0)}{dt} \approx \frac{\bm{U}(t_0+2\Delta t) - \bm{U}(t_0)}{2\Delta t}
+	\end{equation}
+	Tím získáme
+	\begin{equation}
+		\bm{U}(t_0+\Delta t) \approx \bm{U}(t_0) + \frac{\bm{U}(t_0+2\Delta t) - \bm{U}(t_0)}{2} + \frac{1}{2} \frac{d^2\bm{U}(t_0)}{dt^2} \Delta t^2 + \dots
+	\end{equation}
+	což lze upravit na
+	\begin{equation}
+		\frac{d^2\bm{U}(t_0)}{dt^2}
+		\approx
+		\frac{ -\bm{U}(t_0+2\Delta t) + 2\bm{U}(t_0+\Delta t) - \bm{U}(t_0) }{\Delta t^2}
 	\end{equation}
 
 	\textbf{Dopředná diference prvního řádu}
