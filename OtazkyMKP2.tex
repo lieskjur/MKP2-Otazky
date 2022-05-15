@@ -50,49 +50,44 @@
 	
 	Vychází z taylorova rozvoje
 	\begin{equation}
-		\bm{U}(t_0+\Delta t) \approx \bm{U}(t_0) + \frac{d\bm{U}(t_0)}{dt} \Delta t + \frac{1}{2} \frac{d^2\bm{U}(t_0)}{dt^2} \Delta t^2 + \dots
+		\bm{U}(t_0+\Delta t) \approx \bm{U}(t_0) + \frac{d\bm{U}(t_0)}{dt} \Delta t + \frac{d^2\bm{U}(t_0)}{2\,dt^2} \Delta t^2 + \dots
 	\end{equation}
+	
+	\textbf{Dopředná diference prvního řádu}
 	
 	První derivaci lze aproximovat jako
 	\begin{equation}
 		\frac{d\bm{U}(t_0)}{dt} \approx \frac{\bm{U}(t_0+\Delta t) - \bm{U}(t_0)}{\Delta t}
 	\end{equation}
+	s výslednou diferencí
+	\begin{equation}
+		\frac{d\bm{U}_{t_0}}{dt} = \frac{\bm{U}_{t_0+\Delta t} - \bm{U}_{t_0}}{\Delta t}
+	\end{equation}
 	
-	Pro druhou derivace nejdříve dosadíme do taylorova rozvoje
+	\subsection{Centrální diference druhého řádu}
+
+	Centrální diferenci druhého řádu získáme dosazením centrální diference prvního řádu
 	\begin{equation}
-		\frac{d\bm{U}(t_0)}{dt} \approx \frac{\bm{U}(t_0+2\Delta t) - \bm{U}(t_0)}{2\Delta t}
+		\frac{d\bm{U}(t_0)}{dt} \approx \frac{\bm{U}(t_0+\Delta t) - \bm{U}(t_0-\Delta t)}{2\Delta t}
 	\end{equation}
-	Tím získáme
-	\begin{equation}
-		\bm{U}(t_0+\Delta t) \approx \bm{U}(t_0) + \frac{\bm{U}(t_0+2\Delta t) - \bm{U}(t_0)}{2} + \frac{1}{2} \frac{d^2\bm{U}(t_0)}{dt^2} \Delta t^2 + \dots
-	\end{equation}
-	což lze upravit na
+	za první derivaci.
+	% \begin{equation}
+	% 	\bm{U}(t_0+\Delta t) \approx \bm{U}(t_0) + \frac{\bm{U}(t_0+\Delta t) - \bm{U}(t_0-\Delta t)}{2} + \frac{d^2\bm{U}(t_0)}{2\,dt^2} \Delta t^2 + \dots
+	% \end{equation}
+	Úpravou získáme approximaci druhé derivace
 	\begin{equation}
 		\frac{d^2\bm{U}(t_0)}{dt^2}
 		\approx
-		\frac{ -\bm{U}(t_0+2\Delta t) + 2\bm{U}(t_0+\Delta t) - \bm{U}(t_0) }{\Delta t^2}
+		\frac{ \bm{U}(t_0+\Delta t) - 2\bm{U}(t_0) + \bm{U}(t_0-\Delta t) }{\Delta t^2}
 	\end{equation}
-
-	\textbf{Dopředná diference prvního řádu}
-	\begin{equation}
-		\frac{d\bm{U}_{t_0^+}}{dt} = \frac{\bm{U}_{t_0+\Delta t} - \bm{U}_{t_0}}{\Delta t}
-	\end{equation}
-
-	\textbf{Zpětná diference prvního řádu}
-	\begin{equation}
-		\frac{d\bm{U}_{t_0^-}}{dt} = \frac{\bm{U}_{t_0} - \bm{U}_{t_0-\Delta t}}{\Delta t}
-	\end{equation}
-
-	\textbf{Centrální diference druhého řádu}
+	ze které plyne diferenční schéma
 	\begin{equation}
 		\frac{d^2\bm{U}_{t_0}}{dt^2}
-		=
-		\frac{\frac{d\bm{U}_{t_0^+}}{dt} - \frac{d\bm{U}_{t_0^-}}{dt}}{\Delta t}
 		=
 		\frac{\bm{U}_{t_0+\Delta t} - 2\bm{U}_{t_0} + \bm{U}_{t_0-\Delta t}}{\Delta t^2}
 	\end{equation}
 
-	\section{Konzistence matice hmotnosti}
+	\subsection{Konzistence matice hmotnosti}
 	\emph{``Vysvětlete pojmy konzistentní a nekonzistentní matice hmotnosti a vztah k explicitnímu integračnímu schématu. Jakou výhodu přináší užití nekonzistentní matice a za jakou cenu?''}
 
 	Konzistentní matice hmotnosti vzniká sestavením z matic hmotnosti elementů ve tvaru $\bm{M}^e = \int_{(V_e)} \bm{N}^T \rho \, dV$ (konzistentním s energetickým přístupem), které obsahují i mimo diagonální prvky. Pak se rovnice netlumeného systému řeší rozkladem matice $\bm{M}$ do diagonálního tvaru.
