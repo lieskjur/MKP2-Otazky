@@ -188,6 +188,9 @@
 	\end{figure}
 
 	\section{Nelineární model}
+	\emph{``Jakou funkci kromě linearizace materiálových vlastností (tj. kromě operátoru $\bm{E}_L$, který poskytuje lineární vztah $\bm{\sigma} = \bm{E}_L \bm{\varepsilon}$) musí být vybaven materiálový model nelineárního materiálu v deformační variantě MKP a proč?}
+
+	Musím mít definovanou přírůstkovou funkci $f : \Delta\varepsilon \mapsto \Delta\sigma$, kterou lze například realizovat jako $\Delta\sigma = \sigma(\varepsilon+\Delta\varepsilon) - \sigma(\varepsilon)$
 
 	\section{Zpevňování}
 	\emph{``Vysvětlete pojmy kinematické a izotropní zpevnění.''}
@@ -208,6 +211,7 @@
 
 	\section{Tečná matice tuhosti a stabilita systému}
 	\emph{``Jaký je vztah mezi tečnou maticí tuhosti a stabilitou systému?''}
+	Tečná matice tuhosti $\bm{K}_T(\bm{u})$ musí být pozitivně definitní. Jinak například Newton-Raphsonovo schéma nemusí doiterovat.
 
 	\section{Status kontaktního páru}
 	\emph{``Vysvětlete pojem status kontaktního páru (za kontaktní pár považujte pro jednoduchost dvojici uzlů potenciálně svázaných kontaktní vazbovou rovnicí) a formulujte podmínky pro změnu statusu.''}
