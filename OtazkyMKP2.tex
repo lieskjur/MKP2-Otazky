@@ -42,6 +42,12 @@
 		\item [$\bm{K}$] - matice tuhosti
 		\item [$\bm{F}$] - vektor vnějších sil
 	\end{itemize}
+	Matice $\bm{M}$ a $\bm{C}$ se zkládají z matic elementů
+	\begin{equation}
+		\bm{M}^e = \int_{V_e} \bm{N}^T \rho \, \bm{N} \, dV
+		\;,\quad 
+		\bm{C}^e = \int_{V_e} \bm{N}^T \mu \, \bm{N} \, dV
+	\end{equation}
 
 	\section{diferenční operátor}
 	\emph{``Vysvětlete pojem \textbf{diferenční operátor} (diferenční schéma). Jako příklad navrhněte diferenční schéma pro diferenciální operátory $\frac{d\bm{U}}{dt},\frac{d^2\bm{U}}{dt^2}$.''}
@@ -90,14 +96,14 @@
 	\section{Konzistence matice hmotnosti}
 	\emph{``Vysvětlete pojmy konzistentní a nekonzistentní matice hmotnosti a vztah k explicitnímu integračnímu schématu. Jakou výhodu přináší užití nekonzistentní matice a za jakou cenu?''}
 
-	Konzistentní matice hmotnosti vzniká sestavením z matic hmotnosti elementů ve tvaru $\bm{M}^e = \int_{(V_e)} \bm{N}^T \rho \, dV$ (konzistentním s energetickým přístupem), které obsahují i mimo diagonální prvky. Pak se rovnice netlumeného systému řeší rozkladem matice $\bm{M}$ do diagonálního tvaru.
+	Konzistentní matice hmotnosti vzniká sestavením z matic hmotnosti elementů ve tvaru $\bm{M}^e = \int_{(V_e)} \bm{N}^T \rho \, \bm{N} \, dV$ (konzistentním s energetickým přístupem), které obsahují i mimo diagonální prvky. Pak se rovnice netlumeného systému řeší rozkladem matice $\bm{M}$ do diagonálního tvaru.
 
 	Existuje přístup ke konstrukci matice hmotnosti, který rozdělí hmotu elementu do uzlů (aproximace). Pak má matice hmotnosti systému (stejně jako jednotlivé matice elementů) pouze diagonální členy a názýváme ji nekonzistentní.
 
 	\section{Modální transformace}
 	\emph{``Definujte operátor (matici) modální transformace $\Phi$, popište jeho vlastnosti a naznačte transformaci rovnice (*) do modálních souřadnic.''}
 
-	Je-li matice $\Phi$ řešením problému vlastních čísel
+	Jsou-li matice $\bm{\Phi}$, $\bm{\Omega}$ řešením problému vlastních čísel
 	\begin{equation}
 		\bm{K}\bm{\Phi} = \bm{\Omega}^2 \bm{M} \bm{\Phi}
 	\end{equation}
@@ -165,7 +171,7 @@
 	\emph{``Popište princip Newton–Raphsonova iteračního schématu v přírůstkové metodě. Využijte grafické znázornění pro jeden stupeň volnosti a pro soustavu s mnoha stupni volnosti naznačte vývojový diagram.''}
 	\begin{enumerate}
 		\item $\bm{u} = \bm{u}_0$
-		\item $\bm{F}^I = \bm{K}_T(\bm{u})\,\bm{u}$
+		\item $\bm{F}^I = \bm{F}^I(\bm{u})$
 		\item $\bm{F}^N = \bm{F}^E - \bm{F}^I$
 		\item $\|\bm{F}^N\| < \varepsilon$ \textbf{?} return \textbf{:} nothing
 		\item $\Delta \bm{u} = \bm{K}_T(\bm{u})^{-1} \bm{F}^N$
