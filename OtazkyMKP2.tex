@@ -187,10 +187,30 @@
 		\includegraphics[width=.5\linewidth]{figs/NR2.png}
 	\end{figure}
 
-	\section{Nelineární model}
-	\emph{``Jakou funkci kromě linearizace materiálových vlastností (tj. kromě operátoru $\bm{E}_L$, který poskytuje lineární vztah $\bm{\sigma} = \bm{E}_L \bm{\varepsilon}$) musí být vybaven materiálový model nelineárního materiálu v deformační variantě MKP a proč?}
+	\pagebreak
+	\section{Nelineární materiál}
+	\emph{"Jakou funkci kromě linearizace materiálových vlastností (tj. kromě operátoru $\mathbf{E_L}$, který poskytuje linearizovaný vztah $\vec{\sigma} = \mathbf{E_L}\vec{\varepsilon}$) musí být vybaven materiálový model nelineárního materiálu v deformační variantě MKP? Proč?"}
+	
+	Má-li být nelineární materiálový model použitelný pro MKP výpočet, musí kromě tečné matice materiálových parametrů $\mathbf{E_L}$ tento model navíc generovat pro daný odhad přírůstku deformace $\Delta\vec{\varepsilon}$ jemu odpovídající odhad přírůstku napjatosti $\Delta\vec{\sigma}$. Mějme inkrementální schéma nelineárního výpočtu, kde kritérium rovnováhy nabývá formy
+	
+	$$\mathbf{f^{eI}} = \int_{\Omega}\mathbf{B^T}\bm{\sigma}\,dV.$$
+	Podmínka rovnováhy elementu s vnějšími silami pak dává
+	$$\mathbf{f^{eE} + f^{eI} = 0}$$
+	a výsledná nevyvážená síla v důsledku nelinearity je pak
+	$$\mathbf{f^N = f^E - f^I}.$$
+	Jeden krok výpočtu v linearizované formě je tedy
+	$$\Delta\mathbf{f = K_T}\Delta\mathbf{u}.$$
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=.6\linewidth]{figs/7_1.png}
+	\end{figure}
 
-	Musím mít definovanou přírůstkovou funkci $f : \Delta\varepsilon \mapsto \Delta\sigma$, kterou lze například realizovat jako $\Delta\sigma = \sigma(\varepsilon+\Delta\varepsilon) - \sigma(\varepsilon)$
+	Následuje iterativní oprava odhadu $\Delta\mathbf{u}^i$ pomocí minimalizace nevyvážené síly $\mathbf{f_N}$ na požadovanou přesnost $\lVert \mathbf{f^N}\rVert\leq\epsilon$
+	$$\mathbf{K_T}^{\mathnormal{i}}\Delta\mathbf{u}^i = \mathbf{f}^{Hi}$$
+	\begin{figure}[h!]
+		\centering
+		\includegraphics[width=.5\linewidth]{figs/7_2.png}
+	\end{figure}
 
 	\section{Zpevňování}
 	\emph{``Vysvětlete pojmy kinematické a izotropní zpevnění.''}
