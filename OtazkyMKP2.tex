@@ -211,7 +211,13 @@
 
 	\section{Tečná matice tuhosti a stabilita systému}
 	\emph{``Jaký je vztah mezi tečnou maticí tuhosti a stabilitou systému?''}
-	Tečná matice tuhosti $\bm{K}_T(\bm{u})$ musí být pozitivně definitní. Jinak například Newton-Raphsonovo schéma nemusí doiterovat.
+	Tečná matice tuhosti $\bm{K}_T(\bm{u})$ musí být pozitivně definitní.
+	\begin{equation*}
+		\Delta\bm{u}^T\bm{K}_T(\bm{u})\Delta\bm{u} > 0
+		\;,\quad
+		\forall \Delta\bm{u} \in \mathbb{R}^n \setminus \{\bm{0}\}
+	\end{equation*}
+	Jinak například Newton-Raphsonovo schéma nemusí doiterovat.
 
 	\section{Status kontaktního páru}
 	\emph{``Vysvětlete pojem status kontaktního páru (za kontaktní pár považujte pro jednoduchost dvojici uzlů potenciálně svázaných kontaktní vazbovou rovnicí) a formulujte podmínky pro změnu statusu.''}
