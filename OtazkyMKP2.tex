@@ -39,18 +39,28 @@
 		\bm{M}\bm{\ddot{\delta}} + \bm{C}\bm{\dot{\delta}} + \bm{K}\bm{\delta} - \bm{F} = \bm{0}
 	\end{equation*}
 	\begin{itemize}
+		\item [$\bm{M}\bm{\ddot{\delta}}$] - setrvačné síly
+		\item [$\bm{C}\bm{\dot{\delta}}$] - disipační (tlumící) síly
+		\item [$\bm{K}\bm{\delta}$] - akumulační (elastické) síly
+	\end{itemize}
+	\begin{itemize}
 		\item [$\bm{\delta}$] - vektor uzlových posuvů
 		\item [$\bm{M}$] - matice hmotnosti
 		\item [$\bm{C}$] - matice tlumení
 		\item [$\bm{K}$] - matice tuhosti
 		\item [$\bm{F}$] - vektor vnějších sil
 	\end{itemize}
-	Matice $\bm{M}$ a $\bm{C}$ se zkládají z matic elementů
-	\begin{equation*}
-		\bm{M}^e = \int_{V_e} \bm{N}^T \rho \, \bm{N} \, dV
-		\;,\quad 
-		\bm{C}^e = \int_{V_e} \bm{N}^T \mu \, \bm{N} \, dV
-	\end{equation*}
+	Matice $\bm{M}$ a $\bm{C}$ a $\bm{K}$ se zkládají z matic elementů
+	\begin{align*}
+		\bm{M}^e &= \int_{V_e} \bm{N}^T \rho \, \bm{N} \, dV \\
+		\bm{C}^e &= \int_{V_e} \bm{N}^T \mu \, \bm{N} \, dV \\
+		\bm{K}^e &= \int_{V_e} \bm{B}^T \bm{E} \, \bm{B} \, dV \\
+	\end{align*}
+	kde $\rho$ je hustota materiálu, $\mu$ jeho koeficient tlumení,\\ $\bm{E}$ matice elastických konstant, $\bm{N}$ matice tvarových funkcí a $\bm{B}$ operátor z uzlových posuvů na deformace 
+	\begin{align*}
+		\bm{u} &= \bm{N}\bm{\delta} \\
+		\bm{\varepsilon} &= \bm{B}\bm{\delta}
+	\end{align*}
 
 	\section{diferenční operátor}
 	\emph{``Vysvětlete pojem \textbf{diferenční operátor} (diferenční schéma). Jako příklad navrhněte diferenční schéma pro diferenciální operátory $\frac{d\bm{U}}{dt},\frac{d^2\bm{U}}{dt^2}$.''}
@@ -61,6 +71,9 @@
 	\begin{equation*}
 		\bm{U}(t_0+\Delta t) \approx \bm{U}(t_0) + \frac{d\bm{U}(t_0)}{dt} \Delta t + \frac{d^2\bm{U}(t_0)}{2\,dt^2} \Delta t^2 + \dots
 	\end{equation*}
+
+	\vfill\null
+	\columnbreak
 	
 	\subsection{Dopředná diference prvního řádu}
 	
@@ -103,11 +116,8 @@
 
 	Existuje přístup ke konstrukci matice hmotnosti, který rozdělí hmotu elementu do uzlů (aproximace). Pak má matice hmotnosti systému (stejně jako jednotlivé matice elementů) pouze diagonální členy a názýváme ji nekonzistentní.
 
-	
-
 	\vfill\null
 	\columnbreak
-
 
 	\section{Modální transformace}
 	\emph{``Definujte operátor (matici) modální transformace $\Phi$, popište jeho vlastnosti a naznačte transformaci rovnice (*) do modálních souřadnic.''}
@@ -135,7 +145,7 @@
 	\begin{equation*}
 		\bm{M}\bm{\ddot{\delta}} + \bm{C}\bm{\dot{\delta}} + \bm{K}\bm{\delta} = \bm{F}
 	\end{equation*}
-	lze zavedením modální souřadnice $\bm{q} = \bm{\Phi}\bm{\delta}$ a vynásobením transponovanou maticí modální transformace $\bm{\Phi}^T$ zleva, převést do tvaru
+	lze zavedením modální souřadnic $\bm{q} \,,\; \bm{x} = \bm{\Phi}\bm{q}$ a vynásobením transponovanou maticí modální transformace $\bm{\Phi}^T$ zleva, převést do tvaru
 	\begin{equation*}
 		\bm{\ddot{q}} + \bm{\Gamma}\bm{\dot{q}} + \bm{\Omega}^2 \bm{q} = \bm{\Phi}^T \bm{F}
 		\;,\quad 
@@ -246,6 +256,8 @@
 	\begin{equation*}
 		(\bm{u}_2 - \bm{u}_1 ) \cdot \bm{n} = \delta
 	\end{equation*}
+	kde $\bm{u}_i$ jsou ulové posuvy a $\bm{n}$ společná normála v počátečním stavu.
+
 	Status kontaktního páru lze určit z hodnoty $\delta$
 	\begin{equation*}
 		\text{status} = \left\{
@@ -281,7 +293,8 @@
 		\item MKP výpočet
 		\item výpočet reakcí
 		\item kontrola statusu vazeb
-		\item počet potřebných změn = 0 \textbf{?} konec \textbf{:} rozpojení/spojení vazeb a návrat k 2.
+		\item počet potřebných změn = 0 \textbf{?} konec \textbf{:} rozpojení/spojení vazeb
+		\item návrat k 2.
 	\end{enumerate}
 
 	\section{Algoritmus master-slave}
